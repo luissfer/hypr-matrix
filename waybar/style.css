@@ -1,0 +1,114 @@
+/*@import "../../.cache/wal/colors-waybar.css";*/
+
+@define-color main-color #00FF00;
+
+* {
+  font: bold 16px "JetBrainsMono Nerd Font Propo";
+  border: none;
+  border-radius: 0px;
+  box-shadow: none;
+  text-shadow: none;
+}
+
+window#waybar {
+  background: alpha(@background, 0.3);
+  border-radius: 10px;
+}
+
+#window {
+  padding: 2px 10px;
+  margin: 4px 2px 4px 4px;
+  background: alpha(@background, 0.3);
+  border-radius: 10px;
+  color: lighter(@main-color);
+}
+
+tooltip {
+  background: alpha(@background, 0.3);
+  border: 2px solid alpha(lighter(@main-color), 0.3);
+  border-radius: 10px;
+}
+
+tooltip label {
+  color: @foreground;
+}
+
+#custom-arrow-right {
+  color: @main-color;
+  margin: 0px 4px;
+}
+
+#cpu,
+#memory,
+#disk,
+#workspaces {
+  margin: 4px 4px;
+  background: alpha(@background, 0.5);
+  border-radius: 10px;
+}
+
+#workspaces button {
+  padding: 0px 4px;
+  margin: 4px 4px;
+  color: alpha(@foreground, 0.5);
+}
+
+#workspaces button.active {
+  transition: color 0.5s;
+  color: lighter(@main-color);
+}
+
+#workspaces button.urgent,
+#workspaces button:hover {
+  color: @color5;
+  background-color: transparent;
+}
+
+#control-center {
+  padding: 0px 8px;
+  margin: 8px 4px;
+  color: lighter(@main-color);
+  background: alpha(@background, 0.3);
+  border-radius: 10px;
+}
+
+
+#custom-arrow-left {
+  color: lighter(@main-color);
+  margin: 0px 4px;
+}
+
+
+#clock {
+  padding: 0px 8px;
+  margin: 4px 2px 4px 2px;
+  background: alpha(@background, 0.3);
+  border-radius: 10px;
+  color: lighter(@main-color);
+}
+
+
+#custom-powermenu {
+  background-color: @bg0;
+  color: @fg;
+
+  padding-left: 10px;
+  padding-right: 10px;
+  margin-top: 7px;
+  margin-bottom: 12px;
+	border-radius: 10px;
+
+  border-bottom-width: 5px;
+  border-bottom-color: @bg5;
+  border-bottom-style: solid;
+}
+
+#custom-powermenu {
+  background-color: @red;
+  color: @bg0;
+  border-bottom-color: #9e0906;
+
+  margin-right: 15px;
+  padding-left: 20px;
+  padding-right: 23px;
+}

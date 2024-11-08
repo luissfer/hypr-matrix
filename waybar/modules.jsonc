@@ -1,0 +1,85 @@
+{
+  "hyprland/window": {
+    "format": "󰣆 {title}",
+    "max-length": 80,
+    "separate-outputs": false,
+    "rewrite": {
+      "^.*( — LibreWolf|LibreWolf)$": "󰈹 LibreWolf",
+      "^.*v( .*|$)": " Neovim",
+      "^.*~$": "󰄛 Kitty",
+      "^.*(Chrome|Google Chrome)$": "󰊯 Chrome",
+      "^.*(Visual Studio Code)$": "󰨞 VSCode",
+      "(.*) ": " Empty"
+    },
+  },
+  "cpu": {
+    "format": "󰘚 {usage}󱉸",
+  },
+  "memory": {
+    "format": " {:2}󱉸",
+  },
+  "disk": {
+    "interval": 600,
+    "format": "󰆼 {percentage_used}󱉸",
+    "path": "/",
+  },
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "all-outputs": true,
+    "format-icons": {
+      "1": "",
+      "2": "󰖟",
+      "3": "󰅩",
+      "4": "󰞶",
+      "5": "",
+      "6": "󰓇",
+      "7": "",
+      "8": "󰕧",
+      "9": "",
+      "10": "󰙯",
+    },
+  },
+  "group/hub": {
+    "orientation": "inherit",
+    "modules": ["group/utils", "clock"],
+  },
+  "group/utils": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "transition-left-to-right": true,
+    },
+    "modules": ["custom/arrow-left"],
+  },
+  "custom/arrow-left": {
+    "format": "󰁙",
+    "tooltip": false,
+  },
+  "clock": {
+    "format": "{:%H:%M:%S}",
+    "format-alt": "{:%A %d.%m}",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>",
+    "calendar": {
+      "mode": "month",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#ffead3'><b>{}</b></span>",
+        "days": "<span color='#ecc6d9'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>",
+      },
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down",
+    },
+  },
+  "custom/powermenu": { 
+    "format": "",
+    "on-click": "systemctl poweroff",
+    "tooltip": true
+  },
+}
