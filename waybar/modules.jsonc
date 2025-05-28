@@ -53,8 +53,12 @@
     "modules": ["custom/arrow-left"],
   },
   "custom/arrow-left": {
-    "format": "󰁙",
     "tooltip": false,
+    "interval": 1,
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/chromium.sh",
+    "exec-if": "pgrep chrome",
+    "escape": true
   },
   "clock": {
     "format": "{:%H:%M:%S}",
@@ -82,4 +86,11 @@
     "on-click": "systemctl poweroff",
     "tooltip": true
   },
+  "custom/spotify": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify.sh",
+        "exec-if": "pgrep spotify",
+        "escape": true
+   },
 }

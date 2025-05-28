@@ -3,12 +3,12 @@
   "position": "top",
   "fixed-center": true,
   "reload_style_on_change": true,
-  "include": ["~/.config/waybar/modules.jsonc"],
   "modules-left": [
     "hyprland/window",
     "cpu",
     "memory",
-    "disk"
+    "disk",
+    "custom/cpuinfo"
   ],
   
   "modules-center": [
@@ -16,7 +16,165 @@
   ],
 
   "modules-right": [
+    "custom/playerlabel",
+    "custom/playerctl",
+    "pulseaudio",
+    "pulseaudio/slider",
     "group/hub",
+    "custom/spotify",
     "custom/powermenu"
-  ]
+  ],
+
+  
+  "hyprland/window": {
+    "format": "󰣆 {title}",
+    "max-length": 80,
+    "separate-outputs": false,
+    "rewrite": {
+      "^.*( — LibreWolf|LibreWolf)$": "󰈹 LibreWolf",
+      "^.*v( .*|$)": " Neovim",
+      "^.*~$": "󰄛 Kitty",
+      "^.*(Chrome|Google Chrome)$": "󰊯 Chrome",
+      "^.*(Visual Studio Code)$": "󰨞 VSCode",
+      "(.*) ": " Empty"
+    }
+  },
+  "cpu": {
+    "format": "󰻠 {usage}󱉸"
+  },
+  "memory": {
+    "states": {
+      "warning": 75,
+      "critical": 90
+    },
+    "format": "▤ {percentage}%",
+    "format-critical": "󰀦 {percentage}%",
+    "tooltip": true,
+    "tooltip-format": "Memory Used: {used:0.1f} GB / {total:0.1f} GB",
+    "interval": 5,
+    "min-length": 7,
+    "max-length": 7
+  },
+  "disk": {
+    "interval": 600,
+    "format": "⛃ {percentage_used}󱉸",
+    "path": "/"
+  },
+  "custom/cpuinfo": {
+    "exec": "~/.config/waybar/scripts/cpu-temp.sh",
+    "return-type": "json",
+    "format": "{}",
+    "tooltip": true,
+    "interval": 5,
+    "min-length": 8,
+    "max-length": 8
+  },
+  "pulseaudio/slider": {
+    "min": 0,
+    "max": 100,
+    "orientation": "horizontal"
+  },
+  "pulseaudio":{
+		"format": "{icon} {volume}%",
+        	"format-muted": "󰝟",
+		"format-icons": {
+			"default": ["󰕿", "󰖀", "󰕾"]
+		}
+  }
+  ,
+  "custom/playerctl": {
+      "format": "{icon}",
+      "return-type": "json",
+      "max-length": 64,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+      }
+  },
+
+  "custom/playerlabel": {
+      "format": "<span>{}</span>",
+      "return-type": "json",
+      "max-length": 48,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+      }
+  },
+
+  "hyprland/workspaces": {
+    "format": "{icon}",
+    "on-click": "activate",
+    "all-outputs": true,
+    "format-icons": {
+      "1": "",
+      "2": "󰖟",
+      "3": "󰅩",
+      "4": "󰞶",
+      "5": "",
+      "6": "󰓇",
+      "7": "",
+      "8": "󰕧",
+      "9": "",
+      "10": "󰙯"
+    }
+  },
+  "group/hub": {
+    "orientation": "inherit",
+    "modules": ["group/utils", "clock"]
+  },
+  "group/utils": {
+    "orientation": "inherit",
+    "drawer": {
+      "transition-duration": 300,
+      "transition-left-to-right": true
+    },
+    "modules": ["custom/arrow-left"]
+  },
+  "custom/arrow-left": {
+    "format": "󰁙",
+    "tooltip": false
+  },
+  "clock": {
+    "interval": 1,
+    "format": "{:%a %d %b %H:%M:%S}",
+    "format-alt": "{}",
+    "tooltip-format": "<tt><big>{calendar}</big></tt>",
+    "calendar": {
+      "mode": "month",
+      "on-scroll": 1,
+      "format": {
+        "months": "<span color='#00ff00'><b>{}</b></span>",
+        "days": "<span color='#00ff00'><b>{}</b></span>",
+        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
+        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
+        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
+      }
+    },
+    "actions": {
+      "on-click-right": "mode",
+      "on-scroll-up": "shift_up",
+      "on-scroll-down": "shift_down"
+    }
+  },
+  "custom/powermenu": { 
+    "format": "",
+    "on-click": "systemctl poweroff",
+    "tooltip": false
+  },
+  "custom/spotify": {
+    "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify.sh",
+        "exec-if": "pgrep spotify",
+        "escape": true
+  }
 }

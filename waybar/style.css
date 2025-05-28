@@ -1,13 +1,7 @@
-/*@import "../../.cache/wal/colors-waybar.css";*/
-
 @define-color main-color #00FF00;
 
 * {
   font: bold 16px "JetBrainsMono Nerd Font Propo";
-  border: none;
-  border-radius: 0px;
-  box-shadow: none;
-  text-shadow: none;
 }
 
 window#waybar {
@@ -38,9 +32,18 @@ tooltip label {
   margin: 0px 4px;
 }
 
-#cpu,
-#memory,
-#disk,
+#cpu {
+  color: @main-color;
+}
+#memory {
+  color: @main-color;
+}
+#disk {
+  color: @main-color;
+}
+#temperature {
+  color: @main-color;
+}
 #workspaces {
   margin: 4px 4px;
   background: alpha(@background, 0.5);
@@ -89,26 +92,53 @@ tooltip label {
 
 
 #custom-powermenu {
-  background-color: @bg0;
-  color: @fg;
-
-  padding-left: 10px;
-  padding-right: 10px;
-  margin-top: 7px;
-  margin-bottom: 12px;
-	border-radius: 10px;
-
-  border-bottom-width: 5px;
-  border-bottom-color: @bg5;
-  border-bottom-style: solid;
+  background-color: @green;
+  color: @main-color;
+  padding: 0 10px; /* Vertical: 0, Horizontal: 10px */
+  margin: 7px 0 12px; /* Top: 7px, Bottom: 12px */
 }
 
-#custom-powermenu {
-  background-color: @red;
-  color: @bg0;
-  border-bottom-color: #9e0906;
+#custom-spotify {
+  color: @main-color;
+  margin:     0px 6px 0px 10px;
+  min-width:  25px;
+}
 
-  margin-right: 15px;
-  padding-left: 20px;
-  padding-right: 23px;
+#custom-cpuinfo {
+  opacity: 1;
+  color: @main-color;
+  margin-bottom: 0;
+  padding: 0 4px;
+  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+}
+#pulseaudio-slider slider {
+    min-height: 10px;
+    min-width: 100px;
+    opacity: 1;
+    background-image: none;
+    background-color: transparent;
+    border: none;
+    box-shadow: none;
+}
+#pulseaudio-slider trough {
+    min-height: 10px;
+    min-width: 100px;
+    border-radius: 5px;
+    background-color: black;
+}
+#pulseaudio-slider highlight {
+    min-width: 10px;
+    border-radius: 5px;
+    background-color: green;
+}
+
+#pulseaudio {
+  color: @main-color;
+}
+#custom-playerctl {
+  color: @main-color;
+}
+
+#custom-playerlabel {
+  color: @main-color;
 }
