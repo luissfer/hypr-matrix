@@ -8,7 +8,8 @@
     "cpu",
     "memory",
     "disk",
-    "custom/cpuinfo"
+    "custom/cpuinfo",
+    "custom/cpu2"
   ],
   
   "modules-center": [
@@ -167,7 +168,7 @@
   },
   "custom/powermenu": { 
     "format": "",
-    "on-click": "systemctl poweroff",
+    "on-click": "pkill wofi || bash ~/.config/wofi/scripts/powermenu.sh",
     "tooltip": false
   },
   "custom/spotify": {
@@ -176,5 +177,11 @@
         "exec": "~/.config/waybar/modules/spotify.sh",
         "exec-if": "pgrep spotify",
         "escape": true
+  },
+  "custom/cpu2": {
+    "interval": 10,
+		"format-alt": "󰍛 {usage}%",
+		"format": "{icon0}{icon1}{icon2}{icon3}",
+		"format-icons": ["▏", "▎", "▍", "▌", "▋", "▊", "█", "█"]
   }
 }

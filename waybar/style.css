@@ -35,6 +35,9 @@ tooltip label {
 #cpu {
   color: @main-color;
 }
+#custom-cpu2 {
+  color: #FF00FF
+}
 #memory {
   color: @main-color;
 }
