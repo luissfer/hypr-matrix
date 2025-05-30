@@ -1,6 +1,5 @@
 #!/bin/bash
 
-
 # Variables
 uptime=$(uptime -p | sed -e 's/up //g')
 host="archlinux"
@@ -10,19 +9,34 @@ options=(
   "🔒 Lock"
   "💤 Suspend"
   "🔄 Reboot"
-  "⏻  Shutdown"
+  "⏻ Shutdown"
 )
 
 # Función para mostrar el menú con wofi
 main_menu() {
   printf '%s\n' "${options[@]}" | \
-    wofi --dmenu --insensitive --prompt="$host" --define "lines=${#options[@]}+1"
+    wofi --width 250 \
+        --dmenu \
+        --insensitive \
+        --style ~/.config/wofi/themes/matrix.css \
+        --hide-scroll \
+        --cache-file /dev/null \
+        --prompt="$host" \
+        --define "lines=4"
 }
 
 # Función para mostrar confirmación con wofi
 confirm() {
   echo -e "Yes\nNo" | \
-    wofi --dmenu --insensitive --prompt="Are you sure?"
+    wofi --width 250 \
+        --height 20% \
+        --dmenu \
+        --insensitive \
+        --style ~/.config/wofi/themes/matrix.css \
+        --hide-search=true \
+        --hide-scroll \
+        --cache-file /dev/null \
+        --dmenu --insensitive --prompt="Are you sure?"
 }
 
 # Función para ejecutar el comando
@@ -31,19 +45,15 @@ execute() {
   case "$1" in
     shutdown) systemctl poweroff ;;
     reboot) systemctl reboot ;;
-    suspend) mpc -q pause; amixer set Master mute; systemctl suspend ;;
+    suspend) systemctl suspend ;;
+    lock) hyprlock ;;
   esac
 }
 
 # Ejecutar el menú y responder según la opción
 case "$(main_menu)" in
-  "🔒 Shutdown") execute shutdown ;;
-  "💤 Reboot") execute reboot ;;
-  "🔄 Suspend") execute suspend ;;
-  "⏻  Lock")
-    if command -v betterlockscreen >/dev/null; then
-      betterlockscreen -l
-    elif command -v i3lock >/dev/null; then
-      i3lock
-    fi ;;
+  "⏻ Shutdown") execute shutdown ;;
+  "💤 Suspend") execute suspend ;;
+  "🔄 Reboot") execute reboot ;;
+  "🔒 Lock") execute lock ;;
 esac

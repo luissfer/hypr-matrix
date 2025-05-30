@@ -178,10 +178,10 @@
         "exec-if": "pgrep spotify",
         "escape": true
   },
-  "custom/cpu2": {
-    "interval": 10,
-		"format-alt": "󰍛 {usage}%",
-		"format": "{icon0}{icon1}{icon2}{icon3}",
-		"format-icons": ["▏", "▎", "▍", "▌", "▋", "▊", "█", "█"]
-  }
+  // "custom/cpu2": {
+  //   "interval": 10,
+	// 	"format-alt": "󰍛 {usage}%",
+	// 	"format": "{icon0}{icon1}{icon2}{icon3}",
+	// 	"format-icons": ["▏", "▎", "▍", "▌", "▋", "▊", "█", "█"]
+  // }
 }

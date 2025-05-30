@@ -1,0 +1,65 @@
+/* @import ".config/wofi/colors/matrix.css"; */
+@define-color main-color #00FF00;
+@define-color fg #d3c6aa;
+@define-color bg0 #2d353b;
+
+* {
+    font-family: JetBrainsMono Nerd Font, FontAwesome;
+    font-size: 15px;
+    border-radius: 6px;
+    border: none;
+}
+
+window {
+    margin: 0px;
+    background-color: rgba(0, 0, 0, 0.85); /* fondo oscuro translúcido */
+    color: @main-color;
+    border-radius: 8px;
+    border: 1px solid rgba(0,255,0,0.2); /* sutil borde verde */
+}
+
+#outer-box {
+    margin: 0px;
+    border-radius: 0px;
+}
+
+#input {
+    background-color: rgba(0, 0, 0, 0.5); /* input más opaco */
+    color: @main-color;
+    margin: 5px;
+    padding: 6px;
+    border: 1px solid rgba(0,255,0,0.3); /* borde input */
+}
+
+#inner-box {
+    margin: 5px;
+    padding: 0px;
+    border-radius: 0px;
+    background-color: transparent;
+}
+
+#scroll {
+    margin: 0px;
+    padding: 0px;
+    border: none;
+}
+
+#text {
+    margin-left: 5px;
+    margin-right: 10px;
+    color: @main-color;
+}
+
+#entry {
+    border: none;
+    padding: 6px 8px;
+    margin: 0px;
+    background-color: transparent;
+    color: @main-color;
+}
+
+#entry:selected {
+    background-color: rgba(0,255,0,0.15);
+    color: #00FF00;
+    border-left: 2px solid #00FF00;
+}
