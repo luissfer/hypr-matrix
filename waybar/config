@@ -8,8 +8,7 @@
     "cpu",
     "memory",
     "disk",
-    "custom/cpuinfo",
-    "custom/cpu2"
+    "custom/cpuinfo"
   ],
   
   "modules-center": [
@@ -18,9 +17,7 @@
 
   "modules-right": [
     "custom/playerlabel",
-    "custom/playerctl",
     "pulseaudio",
-    "pulseaudio/slider",
     "group/hub",
     "custom/spotify",
     "custom/powermenu"
@@ -29,7 +26,7 @@
   
   "hyprland/window": {
     "format": "󰣆 {title}",
-    "max-length": 80,
+    "max-length": 25,
     "separate-outputs": false,
     "rewrite": {
       "^.*( — LibreWolf|LibreWolf)$": "󰈹 LibreWolf",
@@ -70,11 +67,6 @@
     "min-length": 8,
     "max-length": 8
   },
-  "pulseaudio/slider": {
-    "min": 0,
-    "max": 100,
-    "orientation": "horizontal"
-  },
   "pulseaudio":{
 		"format": "{icon} {volume}%",
         	"format-muted": "󰝟",
@@ -83,20 +75,6 @@
 		}
   }
   ,
-  "custom/playerctl": {
-      "format": "{icon}",
-      "return-type": "json",
-      "max-length": 64,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      }
-  },
-
   "custom/playerlabel": {
       "format": "<span>{}</span>",
       "return-type": "json",
@@ -177,11 +155,5 @@
         "exec": "~/.config/waybar/modules/spotify.sh",
         "exec-if": "pgrep spotify",
         "escape": true
-  },
-  // "custom/cpu2": {
-  //   "interval": 10,
-	// 	"format-alt": "󰍛 {usage}%",
-	// 	"format": "{icon0}{icon1}{icon2}{icon3}",
-	// 	"format-icons": ["▏", "▎", "▍", "▌", "▋", "▊", "█", "█"]
-  // }
+  }
 }
