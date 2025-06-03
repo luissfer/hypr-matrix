@@ -18,6 +18,7 @@
     "pulseaudio",
     "group/hub",
     "custom/spotify",
+    "custom/random-wallpaper",
     "custom/arrow-left",
     "custom/powermenu"
   ],
@@ -151,5 +152,10 @@
         "exec": "~/.config/waybar/modules/spotify.sh",
         "exec-if": "pgrep spotify",
         "escape": true
+  },
+  "custom/random-wallpaper": {
+    "format": "🎲",
+    "tooltip": false,
+    "on-click": "bash ~/.config/waybar/scripts/random_wallpaper.sh"
   }
 }

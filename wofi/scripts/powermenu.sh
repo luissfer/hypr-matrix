@@ -15,21 +15,21 @@ options=(
 # Función para mostrar el menú con wofi
 main_menu() {
   printf '%s\n' "${options[@]}" | \
-    wofi --width 250 \
+    wofi --width 200 \
+        --height 200 \
         --dmenu \
         --insensitive \
         --style ~/.config/wofi/themes/matrix.css \
         --hide-scroll \
         --cache-file /dev/null \
-        --prompt="$host" \
-        --define "lines=4"
+        --prompt="$host" 
 }
 
 # Función para mostrar confirmación con wofi
 confirm() {
   echo -e "Yes\nNo" | \
-    wofi --width 250 \
-        --height 20% \
+    wofi --width 200 \
+        --height 150 \
         --dmenu \
         --insensitive \
         --style ~/.config/wofi/themes/matrix.css \

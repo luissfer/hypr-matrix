@@ -125,3 +125,6 @@ tooltip label {
 #custom-playerlabel {
   color: @main-color;
 }
+#custom-random-wallpaper {
+  color: @main-color;
+}
