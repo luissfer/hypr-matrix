@@ -10,20 +10,17 @@
     "disk",
     "custom/cpuinfo"
   ],
-  
   "modules-center": [
     "hyprland/workspaces"
   ],
-
   "modules-right": [
     "custom/playerlabel",
     "pulseaudio",
     "group/hub",
     "custom/spotify",
+    "custom/arrow-left",
     "custom/powermenu"
   ],
-
-  
   "hyprland/window": {
     "format": "󰣆 {title}",
     "max-length": 25,
@@ -73,8 +70,7 @@
 		"format-icons": {
 			"default": ["󰕿", "󰖀", "󰕾"]
 		}
-  }
-  ,
+  },
   "custom/playerlabel": {
       "format": "<span>{}</span>",
       "return-type": "json",
@@ -88,7 +84,6 @@
         "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
       }
   },
-
   "hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
@@ -108,7 +103,7 @@
   },
   "group/hub": {
     "orientation": "inherit",
-    "modules": ["group/utils", "clock"]
+    "modules": ["clock"]
   },
   "group/utils": {
     "orientation": "inherit",
@@ -119,8 +114,9 @@
     "modules": ["custom/arrow-left"]
   },
   "custom/arrow-left": {
-    "format": "󰁙",
-    "tooltip": false
+    "format": "🔓",
+    "tooltip": false,
+    "on-click": "hyprlock"
   },
   "clock": {
     "interval": 1,

@@ -3,12 +3,10 @@
 * {
   font: bold 16px "JetBrainsMono Nerd Font Propo";
 }
-
 window#waybar {
   background: alpha(@background, 0.3);
   border-radius: 10px;
 }
-
 #window {
   padding: 2px 10px;
   margin: 4px 2px 4px 4px;
@@ -16,22 +14,18 @@ window#waybar {
   border-radius: 10px;
   color: lighter(@main-color);
 }
-
 tooltip {
   background: alpha(@background, 0.3);
   border: 2px solid alpha(lighter(@main-color), 0.3);
   border-radius: 10px;
 }
-
 tooltip label {
   color: @foreground;
 }
-
 #custom-arrow-right {
   color: @main-color;
   margin: 0px 4px;
 }
-
 #cpu {
   color: @main-color;
 }
@@ -52,24 +46,20 @@ tooltip label {
   background: alpha(@background, 0.5);
   border-radius: 10px;
 }
-
 #workspaces button {
   padding: 0px 4px;
   margin: 4px 4px;
   color: alpha(@foreground, 0.5);
 }
-
 #workspaces button.active {
   transition: color 0.5s;
   color: lighter(@main-color);
 }
-
 #workspaces button.urgent,
 #workspaces button:hover {
   color: @color5;
   background-color: transparent;
 }
-
 #control-center {
   padding: 0px 8px;
   margin: 8px 4px;
@@ -77,14 +67,10 @@ tooltip label {
   background: alpha(@background, 0.3);
   border-radius: 10px;
 }
-
-
 #custom-arrow-left {
   color: lighter(@main-color);
   margin: 0px 4px;
 }
-
-
 #clock {
   padding: 0px 8px;
   margin: 4px 2px 4px 2px;
@@ -92,21 +78,17 @@ tooltip label {
   border-radius: 10px;
   color: lighter(@main-color);
 }
-
-
 #custom-powermenu {
   background-color: @green;
   color: @main-color;
   padding: 0 10px; /* Vertical: 0, Horizontal: 10px */
   margin: 7px 0 12px; /* Top: 7px, Bottom: 12px */
 }
-
 #custom-spotify {
   color: @main-color;
   margin:     0px 6px 0px 10px;
   min-width:  25px;
 }
-
 #custom-cpuinfo {
   opacity: 1;
   color: @main-color;
@@ -134,14 +116,12 @@ tooltip label {
     border-radius: 5px;
     background-color: green;
 }
-
 #pulseaudio {
   color: @main-color;
 }
 #custom-playerctl {
   color: @main-color;
 }
-
 #custom-playerlabel {
   color: @main-color;
 }
