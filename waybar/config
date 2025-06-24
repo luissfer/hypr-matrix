@@ -1,23 +1,24 @@
 {
-  "layer": "top",
+  "layer": "bottom",
   "position": "top",
   "fixed-center": true,
   "reload_style_on_change": true,
   "modules-left": [
-    "hyprland/window",
     "cpu",
     "memory",
     "disk",
-    "custom/cpuinfo"
+    "custom/cpuinfo",
+    "network",
+    "hyprland/window"
   ],
   "modules-center": [
     "hyprland/workspaces"
   ],
   "modules-right": [
     "custom/playerlabel",
+    "custom/spotify",
     "pulseaudio",
     "group/hub",
-    "custom/spotify",
     "custom/random-wallpaper",
     "custom/arrow-left",
     "custom/powermenu"
@@ -65,8 +66,14 @@
     "min-length": 8,
     "max-length": 8
   },
+  "network": {
+    "format-wifi": "📶 {signalStrength}%",
+    "format-ethernet": "🌐 ↓{bandwidthDownBytes}-↑{bandwidthUpBytes}",
+    "format-disconnected": "❌",
+    "on-click": "bash ~/.config/wofi/scripts/wifimenu.sh"
+  },
   "pulseaudio":{
-		"format": "{icon} {volume}%",
+		"format": " {volume}% {icon}",
         	"format-muted": "󰝟",
 		"format-icons": {
 			"default": ["󰕿", "󰖀", "󰕾"]

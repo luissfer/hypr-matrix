@@ -1,7 +1,7 @@
 @define-color main-color #00FF00;
 
 * {
-  font: bold 16px "JetBrainsMono Nerd Font Propo";
+  font: bold 18px "JetBrainsMono Nerd Font Propo";
 }
 window#waybar {
   background: alpha(@background, 0.3);
@@ -39,6 +39,9 @@ tooltip label {
   color: @main-color;
 }
 #temperature {
+  color: @main-color;
+}
+#network {
   color: @main-color;
 }
 #workspaces {
