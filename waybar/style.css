@@ -44,6 +44,9 @@ tooltip label {
 #network {
   color: @main-color;
 }
+#bluetooth {
+  color: @main-color;
+}
 #workspaces {
   margin: 4px 4px;
   background: alpha(@background, 0.5);

@@ -17,6 +17,7 @@
   "modules-right": [
     "custom/playerlabel",
     "custom/spotify",
+    "bluetooth",
     "pulseaudio",
     "group/hub",
     "custom/random-wallpaper",
@@ -74,10 +75,20 @@
   },
   "pulseaudio":{
 		"format": " {volume}% {icon}",
-        	"format-muted": "󰝟",
+    "format-muted": "󰝟",
+    "format-bluetooth": " {volume}% {icon}",
 		"format-icons": {
 			"default": ["󰕿", "󰖀", "󰕾"]
 		}
+  },
+  "bluetooth": {
+    "format": " {status}",
+	  "format-disabled": "",
+	  "format-connected": " {device_alias}",
+	  "tooltip-format": "{controller_alias}\t{controller_address}",
+	  "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
+	  "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
+    "on-click": "bash ~/.config/waybar/scripts/bluetoothmenu.sh"
   },
   "custom/playerlabel": {
       "format": "<span>{}</span>",
