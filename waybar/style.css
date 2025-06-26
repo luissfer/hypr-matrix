@@ -73,7 +73,7 @@ tooltip label {
   background: alpha(@background, 0.3);
   border-radius: 10px;
 }
-#custom-arrow-left {
+#custom-locked {
   color: lighter(@main-color);
   margin: 0px 4px;
 }

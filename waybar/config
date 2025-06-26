@@ -1,5 +1,5 @@
 {
-  "layer": "bottom",
+  "layer": "top",
   "position": "top",
   "fixed-center": true,
   "reload_style_on_change": true,
@@ -8,20 +8,20 @@
     "memory",
     "disk",
     "custom/cpuinfo",
-    "network",
-    "hyprland/window"
+    "network"    
   ],
   "modules-center": [
-    "hyprland/workspaces"
+    "hyprland/window",
+    "hyprland/workspaces",
+    "custom/spotify"
+//  "custom/playerlabel"
   ],
   "modules-right": [
-    "custom/playerlabel",
-    "custom/spotify",
     "bluetooth",
     "pulseaudio",
     "group/hub",
     "custom/random-wallpaper",
-    "custom/arrow-left",
+    "custom/locked",
     "custom/powermenu"
   ],
   "hyprland/window": {
@@ -69,7 +69,7 @@
   },
   "network": {
     "format-wifi": "📶 {signalStrength}%",
-    "format-ethernet": "🌐 ↓{bandwidthDownBytes}-↑{bandwidthUpBytes}",
+    "format-ethernet": "󰖟 ↓{bandwidthDownBytes}-↑{bandwidthUpBytes}",
     "format-disconnected": "❌",
     "on-click": "bash ~/.config/wofi/scripts/wifimenu.sh"
   },
@@ -90,26 +90,13 @@
 	  "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
     "on-click": "bash ~/.config/waybar/scripts/bluetoothmenu.sh"
   },
-  "custom/playerlabel": {
-      "format": "<span>{}</span>",
-      "return-type": "json",
-      "max-length": 48,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      }
-  },
   "hyprland/workspaces": {
     "format": "{icon}",
     "on-click": "activate",
     "all-outputs": true,
     "format-icons": {
-      "1": "",
-      "2": "󰖟",
+      "1": "󰙯",
+      "2": "",
       "3": "󰅩",
       "4": "󰞶",
       "5": "",
@@ -124,15 +111,7 @@
     "orientation": "inherit",
     "modules": ["clock"]
   },
-  "group/utils": {
-    "orientation": "inherit",
-    "drawer": {
-      "transition-duration": 300,
-      "transition-left-to-right": true
-    },
-    "modules": ["custom/arrow-left"]
-  },
-  "custom/arrow-left": {
+  "custom/locked": {
     "format": "🔓",
     "tooltip": false,
     "on-click": "hyprlock"
@@ -166,14 +145,27 @@
   },
   "custom/spotify": {
     "interval": 1,
-        "return-type": "json",
-        "exec": "~/.config/waybar/modules/spotify.sh",
-        "exec-if": "pgrep spotify",
-        "escape": true
+    "return-type": "json",
+    "exec": "~/.config/waybar/modules/spotify.sh",
+    "exec-if": "pgrep spotify",
+    "escape": true
   },
   "custom/random-wallpaper": {
     "format": "🎲",
     "tooltip": false,
     "on-click": "bash ~/.config/waybar/scripts/random_wallpaper.sh"
+  },
+  "custom/playerlabel": {
+      "format": "<span>{}</span>",
+      "return-type": "json",
+      "max-length": 48,
+      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
+      "on-click-middle": "playerctl play-pause",
+      "on-click": "playerctl previous",
+      "on-click-right": "playerctl next",
+      "format-icons": {
+        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
+        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
+      }
   }
 }
