@@ -27,22 +27,58 @@ tooltip label {
   margin: 0px 4px;
 }
 #cpu {
-  color: @main-color;
-}
-#custom-cpu2 {
-  color: #FF00FF
+  color: #00FF00; /* Verde fosforescente */
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font";
+  padding: 0 10px;
+  background-color: rgba(0, 255, 0, 0.1);
+  border: 1px solid #00FF00;
+  border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 #memory {
-  color: @main-color;
+  color: #00FF00;
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  padding: 0 10px;
+  background-color: rgba(0, 255, 0, 0.1);
+  border: 1px solid #00FF00;
+  border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+}
+#memory.warning {
+  color: #FFFF00; /* Amarillo fosforescente para warning */
+  border-color: #FFFF00;
+  background-color: rgba(255, 255, 0, 0.1);
+}
+#memory.critical {
+  color: #FF0000; /* Rojo fosforescente para crítico */
+  border-color: #FF0000;
+  background-color: rgba(255, 0, 0, 0.1);
 }
 #disk {
-  color: @main-color;
-}
-#temperature {
-  color: @main-color;
+  color: #00FF00;
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  padding: 0 10px;
+  background-color: rgba(0, 255, 0, 0.1);
+  border: 1px solid #00FF00;
+  border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 #network {
-  color: @main-color;
+  color: #00FF00;
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  padding: 0 10px;
+  background-color: rgba(0, 255, 0, 0.1);
+  border: 1px solid #00FF00;
+  border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 #bluetooth {
   color: @main-color;
@@ -74,8 +110,13 @@ tooltip label {
   border-radius: 10px;
 }
 #custom-locked {
-  color: lighter(@main-color);
-  margin: 0px 4px;
+  color: #00FF00;
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  padding: 0 10px;
+  background-color: rgba(0, 255, 0, 0.1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 #clock {
   padding: 0px 8px;
@@ -85,10 +126,16 @@ tooltip label {
   color: lighter(@main-color);
 }
 #custom-powermenu {
-  background-color: @green;
-  color: @main-color;
-  padding: 0 10px; /* Vertical: 0, Horizontal: 10px */
-  margin: 7px 0 12px; /* Top: 7px, Bottom: 12px */
+  color: #00FF00;
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  padding: 0 10px;
+  margin: 7px 0 12px;
+  background-color: rgba(0, 255, 0, 0.1);
+  font-size: 1.2em;         /* Igual altura que otros módulos */              /* Forzar altura */        /* Centrar vertical */   /* Centrar horizontal */
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
 #custom-spotify {
   color: @main-color;
@@ -96,11 +143,15 @@ tooltip label {
   min-width:  25px;
 }
 #custom-cpuinfo {
-  opacity: 1;
-  color: @main-color;
-  margin-bottom: 0;
-  padding: 0 4px;
-  text-shadow: 0 0 2px rgba(0, 0, 0, 0.6);
+  color: #00FF00;
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  padding: 0 10px;
+  background-color: rgba(0, 255, 0, 0.1);
+  border: 1px solid #00FF00;
+  border-radius: 4px;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
 }
 #pulseaudio-slider slider {
     min-height: 10px;
@@ -132,5 +183,12 @@ tooltip label {
   color: @main-color;
 }
 #custom-random-wallpaper {
-  color: @main-color;
+  color: #00FF00;
+  font-weight: bold;
+  font-family: "JetBrainsMono Nerd Font", monospace;
+  padding: 0 10px;
+  background-color: rgba(0, 255, 0, 0.1);
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  transition: background-color 0.3s ease, color 0.3s ease;
 }
