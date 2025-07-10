@@ -1,50 +1,77 @@
 #!/bin/bash
 
-SOURCE="waybar"
-DEST="$HOME/.config/waybar"
+# Colors for output messages
+GREEN='\033[0;32m'
+BLUE='\033[0;34m'
+RED='\033[0;31m'
+NC='\033[0m' # No Color
 
-# Verifica si la carpeta fuente existe
-if [[ ! -d "$SOURCE" ]]; then
-  echo "Advertencia: La carpeta '$SOURCE' no existe. No se realizó ninguna acción."
-else
-  # Crea la carpeta destino si no existe
-  mkdir -p "$DEST"
+# Base directory for configuration files
+CONFIG_DIR="$HOME/.config"
 
-  # Copia recursivamente todos los archivos y directorios
-  cp -r "$SOURCE/"* "$DEST/"
+# Base directory for backups
+BACKUP_BASE="$HOME/.config/hypr-matrix-backup/backup-$(date +%Y%m%d-%H%M%S)"
 
-  echo "Archivos copiados exitosamente a $DEST."
-fi
+# Create backup directory
+mkdir -p "$BACKUP_BASE"
 
-SOURCE="wofi"
-DEST="$HOME/.config/wofi"
-# Verifica si la carpeta fuente existe
-if [[ ! -d "$SOURCE" ]]; then
-  echo "Advertencia: La carpeta '$SOURCE' no existe. No se realizó ninguna acción."
-else
-  # Crea la carpeta destino si no existe
-  mkdir -p "$DEST"
+# Function to copy configuration
+copy_config() {
+    local source=$1
+    local dest=$2
+    local backup_dir=$3
 
-  # Copia recursivamente todos los archivos y directorios
-  cp -r "$SOURCE/"* "$DEST/"
+    # Create backup directory if it doesn't exist
+    if [ ! -d "$backup_dir" ]; then
+        mkdir -p "$backup_dir"
+    fi
 
-  echo "Archivos copiados exitosamente a $DEST."
-fi
+    # Backup existing configuration if it exists
+    if [ -e "$dest" ]; then
+        cp -r "$dest" "$backup_dir/"
+    fi
 
+    # Apply new configuration
+    cp -r "$source" "$dest"
+    echo -e "${GREEN}Configuration for $source applied to $dest${NC}"
+}
 
-// hyprlock copy conf also all hypr folder
-SOURCE="hypr"
-DEST="$HOME/.config/hypr"
+# Configuration directories
+declare -a dirs=(
+    "hypr"
+    "kitty"
+    "waybar"
+    "wofi"
+)
 
-# Verifica si la carpeta fuente existe
-if [[ ! -d "$SOURCE" ]]; then
-  echo "Advertencia: La carpeta '$SOURCE' no existe. No se realizó ninguna acción."
-else
-  # Crea la carpeta destino si no existe
-  mkdir -p "$DEST"
+echo -e "${BLUE}Starting Matrix configuration application...${NC}"
 
-  # Copia recursivamente todos los archivos y directorios
-  cp -r "$SOURCE/"* "$DEST/"
+# Create config directory if it doesn't exist
+mkdir -p "$CONFIG_DIR"
 
-  echo "Archivos copiados exitosamente a $DEST."
-fi
+# Backup and apply each configuration
+for dir in "${dirs[@]}"; do
+    echo -e "\n${BLUE}Processing $dir configuration...${NC}"
+
+    # Backup existing configuration
+    mkdir -p "$BACKUP_BASE/$dir"
+
+    # Apply new configuration
+    if [ -d "$dir" ]; then
+        # If source is a directory, copy its contents
+        copy_config "$PWD/$dir/." "$CONFIG_DIR/$dir" "$BACKUP_BASE/$dir"
+    elif [ -f "$dir" ]; then
+        # If source is a file, copy the file
+        copy_config "$PWD/$dir" "$CONFIG_DIR/$dir" "$BACKUP_BASE"
+    else
+        echo -e "${RED}Error: $dir not found${NC}"
+        continue
+    fi
+done
+
+# Restart Waybar to apply changes
+killall waybar
+waybar &
+
+echo -e "\n${GREEN}Matrix configuration successfully applied!${NC}"
+echo -e "${BLUE}Backups of your previous configuration are in $BACKUP_BASE${NC}"

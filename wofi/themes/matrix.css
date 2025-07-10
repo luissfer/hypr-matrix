@@ -1,65 +1,105 @@
-/* @import ".config/wofi/colors/matrix.css"; */
+/* Matrix Theme for Wofi */
 @define-color main-color #00FF00;
-@define-color fg #d3c6aa;
-@define-color bg0 #2d353b;
+@define-color dim-color #00AA00;
+@define-color bg-color rgba(0, 0, 0, 0.85);
+@define-color bg-hover rgba(0, 255, 0, 0.15);
+@define-color border-color rgba(0, 255, 0, 0.3);
 
 * {
-    font-family: JetBrainsMono Nerd Font, FontAwesome;
-    font-size: 15px;
-    border-radius: 6px;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 16px;
+    font-weight: bold;
     border: none;
 }
 
 window {
-    margin: 0px;
-    background-color: rgba(0, 0, 0, 0.85); /* fondo oscuro translúcido */
+    margin: 5px;
+    padding: 8px;
+    background-color: @bg-color;
     color: @main-color;
-    border-radius: 8px;
-    border: 1px solid rgba(0,255,0,0.2); /* sutil borde verde */
+    border: 2px solid @border-color;
+    border-radius: 10px;
+    min-width: 500px;
+    max-width: 800px;
 }
 
 #outer-box {
-    margin: 0px;
-    border-radius: 0px;
+    margin: 0;
+    border-radius: 8px;
+    background-color: transparent;
 }
 
 #input {
-    background-color: rgba(0, 0, 0, 0.5); /* input más opaco */
+    background-color: rgba(0, 0, 0, 0.7);
     color: @main-color;
     margin: 5px;
-    padding: 6px;
-    border: 1px solid rgba(0,255,0,0.3); /* borde input */
+    padding: 8px 12px;
+    font-size: 18px;
+    border: 1px solid @border-color;
+    border-radius: 6px;
+    box-shadow: 0 0 5px @border-color;
+}
+
+#input:focus {
+    border-color: @main-color;
+    box-shadow: 0 0 8px @main-color;
 }
 
 #inner-box {
     margin: 5px;
-    padding: 0px;
-    border-radius: 0px;
+    padding: 5px;
     background-color: transparent;
 }
 
 #scroll {
-    margin: 0px;
-    padding: 0px;
+    margin: 0;
+    padding: 5px;
     border: none;
 }
 
 #text {
-    margin-left: 5px;
-    margin-right: 10px;
+    margin: 5px;
+    padding: 2px 8px;
     color: @main-color;
+    font-size: 16px;
 }
 
 #entry {
-    border: none;
-    padding: 6px 8px;
-    margin: 0px;
+    padding: 8px;
+    margin: 2px 0;
+    border-radius: 6px;
     background-color: transparent;
-    color: @main-color;
+    transition: all 0.2s ease;
 }
 
 #entry:selected {
-    background-color: rgba(0,255,0,0.15);
-    color: #00FF00;
-    border-left: 2px solid #00FF00;
+    background-color: @bg-hover;
+    border-left: 3px solid @main-color;
+    padding-left: 12px;
+}
+
+#entry:hover {
+    background-color: @bg-hover;
+    border-left: 2px solid @dim-color;
+    padding-left: 10px;
+}
+
+#entry image {
+    margin-right: 8px;
+    color: @main-color;
+}
+
+scrollbar {
+    background-color: transparent;
+    margin: 0 2px;
+}
+
+scrollbar slider {
+    background-color: @border-color;
+    border-radius: 6px;
+    margin: 2px;
+}
+
+scrollbar slider:hover {
+    background-color: @main-color;
 }

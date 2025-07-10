@@ -1,59 +1,63 @@
 #!/bin/bash
 
-# Variables
-uptime=$(uptime -p | sed -e 's/up //g')
-host="archlinux"
+# Matrix theme colors
+GREEN='\033[0;32m'
+NC='\033[0m' # No Color
 
-# Opciones
+# Menu options
 options=(
-  "🔒 Lock"
-  "💤 Suspend"
-  "🔄 Reboot"
-  "⏻ Shutdown"
+    "Lock"
+    "Logout"
+    "Suspend"
+    "Hibernate"
+    "Reboot"
+    "Shutdown"
 )
 
-# Función para mostrar el menú con wofi
-main_menu() {
-  printf '%s\n' "${options[@]}" | \
-    wofi --width 200 \
-        --height 200 \
-        --dmenu \
-        --insensitive \
-        --style ~/.config/wofi/themes/matrix.css \
-        --hide-scroll \
-        --cache-file /dev/null \
-        --prompt="$host" 
+# Create menu items with Matrix-style formatting
+menu=""
+for option in "${options[@]}"; do
+    menu+="$option\n"
+done
+
+# Show menu with wofi
+chosen=$(echo -e "$menu" | wofi \
+    --dmenu \
+    --cache-file=/dev/null \
+    --prompt="System Control" \
+    --width=300 \
+    --height=400 \
+    --style="$HOME/.config/wofi/themes/matrix.css" \
+    --hide-scroll \
+    --allow-markup \
+    --define=matching=fuzzy)
+
+# Function to execute command
+execute_command() {
+    local cmd=$1
+    local msg=$2
+    echo -e "${GREEN}$msg${NC}"
+    eval "$cmd"
 }
 
-# Función para mostrar confirmación con wofi
-confirm() {
-  echo -e "Yes\nNo" | \
-    wofi --width 200 \
-        --height 150 \
-        --dmenu \
-        --insensitive \
-        --style ~/.config/wofi/themes/matrix.css \
-        --hide-search=true \
-        --hide-scroll \
-        --cache-file /dev/null \
-        --dmenu --insensitive --prompt="Are you sure?"
-}
-
-# Función para ejecutar el comando
-execute() {
-  [[ "$(confirm)" != "Yes" ]] && exit
-  case "$1" in
-    shutdown) systemctl poweroff ;;
-    reboot) systemctl reboot ;;
-    suspend) systemctl suspend ;;
-    lock) hyprlock ;;
-  esac
-}
-
-# Ejecutar el menú y responder según la opción
-case "$(main_menu)" in
-  "⏻ Shutdown") execute shutdown ;;
-  "💤 Suspend") execute suspend ;;
-  "🔄 Reboot") execute reboot ;;
-  "🔒 Lock") execute lock ;;
+# Execute menu and respond according to option
+case "$chosen" in
+    "Lock")
+        execute_command "hyprlock" "Locking screen..."
+        ;;
+    "Logout")
+        execute_command "hyprctl dispatch exit" "Logging out..."
+        ;;
+    "Suspend")
+        execute_command "systemctl suspend" "Suspending system..."
+        ;;
+    "Hibernate")
+        execute_command "systemctl hibernate" "Hibernating system..."
+        ;;
+    "Reboot")
+        execute_command "systemctl reboot" "Rebooting system..."
+        ;;
+    "Shutdown")
+        execute_command "systemctl poweroff" "Shutting down system..."
+        ;;
 esac

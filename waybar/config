@@ -1,175 +1,197 @@
 {
-  "layer": "top",
-  "position": "top",
-  "fixed-center": true,
-  "reload_style_on_change": true,
-  "modules-left": [
-    "cpu",
-    "memory",
-    "disk",
-    "custom/cpuinfo",
-    "network"    
-  ],
-  "modules-center": [
-    "hyprland/window",
-    "hyprland/workspaces",
-    "custom/spotify"
-//  "custom/playerlabel"
-  ],
-  "modules-right": [
-    "bluetooth",
-    "pulseaudio",
-    "group/hub",
-    "custom/random-wallpaper",
-    "custom/locked",
-    "custom/powermenu"
-  ],
-  "hyprland/window": {
-    "format": "󰣆 {title}",
-    "max-length": 25,
-    "separate-outputs": false,
-    "rewrite": {
-      "^.*( — LibreWolf|LibreWolf)$": "󰈹 LibreWolf",
-      "^.*v( .*|$)": " Neovim",
-      "^.*~$": "󰄛 Kitty",
-      "^.*(Chrome|Google Chrome)$": "󰊯 Chrome",
-      "^.*(Visual Studio Code)$": "󰨞 VSCode",
-      "(.*) ": " Empty"
-    }
-  },
-  "cpu": {
-    "format": "  CPU: {usage}%@{avg_frequency}GHz",
-    "tooltip": true,
-    "interval": 2,
-    "max-length": 20
-  },
-  "memory": {
-    "states": {
-      "warning": 75,
-      "critical": 90
+    "layer": "top",
+    "position": "top",
+    "height": 32,
+    "spacing": 4,
+    "margin-top": 4,
+    "margin-bottom": 0,
+    "margin-left": 8,
+    "margin-right": 8,
+    
+    "modules-left": [
+        "hyprland/workspaces",
+        "hyprland/window",
+        "custom/separator",
+        "cpu",
+        "memory",
+        "disk",
+        "custom/cpuinfo",
+        "network"
+    ],
+    
+    "modules-center": [
+        "clock",
+        "custom/separator",
+        "custom/spotify"
+    ],
+    
+    "modules-right": [
+        "pulseaudio",
+        "bluetooth",
+        "custom/separator",
+        "custom/random-wallpaper",
+        "custom/locked",
+        "custom/powermenu"
+    ],
+
+    "hyprland/workspaces": {
+        "format": "{name}",
+        "on-click": "activate",
+        "on-scroll-up": "hyprctl dispatch workspace e+1",
+        "on-scroll-down": "hyprctl dispatch workspace e-1",
+        "all-outputs": true,
+        "active-only": false,
+        "show-special": true,
+        "persistent_workspaces": {
+            "1": [],
+            "2": [],
+            "3": [],
+            "4": [],
+            "5": [],
+            "6": [],
+            "7": [],
+            "8": [],
+            "9": [],
+            "10": []
+        }
     },
-    "format": " 󰋛 MEM: {percentage}%",
-    "format-warning": " 󰋛 MEM: {percentage}%",
-    "format-critical": " 󰋛 MEM: {percentage}%",
-    "tooltip": true,
-    "tooltip-format": "Memory Used: {used:0.1f} GB / {total:0.1f} GB",
-    "interval": 5,
-    "min-length": 9,
-    "max-length": 20
-  },
-  "disk": {
-    "interval": 600,
-    "format": " 󰋊 DISK: {percentage_used}%",
-    "path": "/"
-  },
-  "custom/cpuinfo": {
-    "exec": "~/.config/waybar/scripts/cpu-temp.sh",
-    "return-type": "json",
-    "format": "{}",
-    "tooltip": true,
-    "interval": 5,
-    "min-length": 8,
-    "max-length": 20
-  },
-  "network": {
-    "format-wifi": "📶 {signalStrength}%",
-    "format-ethernet": "󰖟 ↓{bandwidthDownBytes}-↑{bandwidthUpBytes}",
-    "format-disconnected": "X",
-    "on-click": "bash ~/.config/wofi/scripts/wifimenu.sh"
-  },
-  "pulseaudio":{
-		"format": " {volume}% {icon}",
-    "format-muted": "󰝟",
-    "format-bluetooth": " {volume}% {icon}",
-		"format-icons": {
-			"default": ["󰕿", "󰖀", "󰕾"]
-		}
-  },
-  "bluetooth": {
-    "format": " {status}",
-	  "format-disabled": "",
-	  "format-connected": " {device_alias}",
-	  "tooltip-format": "{controller_alias}\t{controller_address}",
-	  "tooltip-format-connected": "{controller_alias}\t{controller_address}\n\n{device_enumerate}",
-	  "tooltip-format-enumerate-connected": "{device_alias}\t{device_address}",
-    "on-click": "bash ~/.config/waybar/scripts/bluetoothmenu.sh"
-  },
-  "hyprland/workspaces": {
-    "format": "{icon}",
-    "on-click": "activate",
-    "all-outputs": true,
-    "format-icons": {
-      "1": "󰙯",
-      "2": "",
-      "3": "󰅩",
-      "4": "󰞶",
-      "5": "",
-      "6": "󰓇",
-      "7": "",
-      "8": "󰕧",
-      "9": "",
-      "10": "󰙯"
-    }
-  },
-  "group/hub": {
-    "orientation": "inherit",
-    "modules": ["clock"]
-  },
-  "custom/locked": {
-    "format": "■",
-    "tooltip": false,
-    "on-click": "hyprlock"
-  },
-  "clock": {
-    "interval": 1,
-    "format": "{:%a %d %b %H:%M:%S}",
-    "format-alt": "{}",
-    "tooltip-format": "<tt><big>{calendar}</big></tt>",
-    "calendar": {
-      "mode": "month",
-      "on-scroll": 1,
-      "format": {
-        "months": "<span color='#00ff00'><b>{}</b></span>",
-        "days": "<span color='#00ff00'><b>{}</b></span>",
-        "weeks": "<span color='#99ffdd'><b>W{}</b></span>",
-        "weekdays": "<span color='#ffcc66'><b>{}</b></span>",
-        "today": "<span color='#ff6699'><b><u>{}</u></b></span>"
-      }
+
+    "hyprland/window": {
+        "format": "{}",
+        "separate-outputs": true,
+        "max-length": 35
     },
-    "actions": {
-      "on-click-right": "mode",
-      "on-scroll-up": "shift_up",
-      "on-scroll-down": "shift_down"
+
+    "custom/separator": {
+        "format": "|",
+        "interval": "once",
+        "tooltip": false
+    },
+
+    "cpu": {
+        "interval": 2,
+        "format": "  {usage}%",
+        "format-alt": "  {load}",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "kitty -e htop"
+    },
+
+    "memory": {
+        "interval": 5,
+        "format": "󰍛 {percentage}%",
+        "format-alt": "󰍛 {used:0.1f}GB",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "kitty -e htop"
+    },
+
+    "disk": {
+        "interval": 30,
+        "format": "󰋊 {percentage_used}%",
+        "format-alt": "󰋊 {used}",
+        "path": "/",
+        "states": {
+            "warning": 70,
+            "critical": 90
+        },
+        "on-click": "kitty -e ncdu /"
+    },
+
+    "custom/cpuinfo": {
+        "exec": "~/.config/waybar/scripts/cpu-temp.sh",
+        "return-type": "json",
+        "interval": 5,
+        "format": "{}",
+        "on-click": "kitty -e sensors"
+    },
+
+    "network": {
+        "format-wifi": "󰖩 {signalStrength}%",
+        "format-ethernet": "󰈀 {bandwidthUpBytes} 󰈂 {bandwidthDownBytes}",
+        "format-disconnected": "󰖪",
+        "tooltip-format": "{ifname} via {gwaddr}",
+        "tooltip-format-wifi": "{essid} ({signalStrength}%)",
+        "tooltip-format-ethernet": "{ifname}",
+        "tooltip-format-disconnected": "Disconnected",
+        "on-click": "bash ~/.config/wofi/scripts/wifimenu.sh"
+    },
+
+    "clock": {
+        "interval": 1,
+        "format": "{:%H:%M:%S}",
+        "format-alt": "{:%Y-%m-%d}",
+        "tooltip-format": "<tt><small>{calendar}</small></tt>",
+        "calendar": {
+            "mode"          : "month",
+            "mode-mon-col"  : 3,
+            "weeks-pos"     : "right",
+            "on-scroll"     : 1,
+            "format": {
+                "months":     "<span color='#00ff00'><b>{}</b></span>",
+                "days":       "<span color='#00ff00'><b>{}</b></span>",
+                "weeks":      "<span color='#99ffdd'><b>W{}</b></span>",
+                "weekdays":   "<span color='#ffcc66'><b>{}</b></span>",
+                "today":      "<span color='#ff6699'><b><u>{}</u></b></span>"
+            }
+        }
+    },
+
+    "pulseaudio": {
+        "format": "{icon} {volume}%",
+        "format-bluetooth": "󰂰 {volume}%",
+        "format-muted": "󰝟",
+        "format-icons": {
+            "headphone": "",
+            "hands-free": "",
+            "headset": "",
+            "phone": "",
+            "portable": "",
+            "car": "",
+            "default": ["", "", ""]
+        },
+        "scroll-step": 5,
+        "on-click": "pavucontrol",
+        "on-click-right": "wpctl set-mute @DEFAULT_AUDIO_SINK@ toggle"
+    },
+
+    "bluetooth": {
+        "format": "",
+        "format-disabled": "󰂲",
+        "format-connected": "󰂱 {num_connections}",
+        "tooltip-format": "{controller_alias}\n{num_connections} connected",
+        "tooltip-format-connected": "{controller_alias}\n{num_connections} connected\n\n{device_enumerate}",
+        "tooltip-format-enumerate-connected": "{device_alias}",
+        "on-click": "bash ~/.config/waybar/scripts/bluetoothmenu.sh"
+    },
+
+    "custom/spotify": {
+        "interval": 1,
+        "return-type": "json",
+        "exec": "~/.config/waybar/modules/spotify.sh",
+        "exec-if": "pgrep spotify",
+        "escape": true
+    },
+
+    "custom/powermenu": {
+        "format": "⏻",
+        "on-click": "bash ~/.config/wofi/scripts/powermenu.sh",
+        "tooltip": false
+    },
+
+    "custom/random-wallpaper": {
+        "format": "⧉",
+        "on-click": "bash ~/.config/waybar/scripts/random_wallpaper.sh",
+        "tooltip": false
+    },
+
+    "custom/locked": {
+        "format": "󰌾",
+        "on-click": "hyprlock",
+        "tooltip": false
     }
-  },
-  "custom/powermenu": { 
-    "format": "⏻",
-    "on-click": "pkill wofi || bash ~/.config/wofi/scripts/powermenu.sh",
-    "tooltip": false
-  },
-  "custom/spotify": {
-    "interval": 1,
-    "return-type": "json",
-    "exec": "~/.config/waybar/modules/spotify.sh",
-    "exec-if": "pgrep spotify",
-    "escape": true
-  },
-  "custom/random-wallpaper": {
-    "format": "⧉",
-    "tooltip": false,
-    "on-click": "bash ~/.config/waybar/scripts/random_wallpaper.sh"
-  },
-  "custom/playerlabel": {
-      "format": "<span>{}</span>",
-      "return-type": "json",
-      "max-length": 48,
-      "exec": "playerctl -a metadata --format '{\"text\": \"{{artist}} - {{markup_escape(title)}}\", \"tooltip\": \"{{playerName}} : {{markup_escape(title)}}\", \"alt\": \"{{status}}\", \"class\": \"{{status}}\"}' -F",
-      "on-click-middle": "playerctl play-pause",
-      "on-click": "playerctl previous",
-      "on-click-right": "playerctl next",
-      "format-icons": {
-        "Playing": "<span foreground='#E5B9C6'>󰒮 󰐌 󰒭</span>",
-        "Paused": "<span foreground='#928374'>󰒮 󰏥 󰒭</span>"
-      }
-  }
 }

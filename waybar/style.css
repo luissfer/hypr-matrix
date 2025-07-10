@@ -1,194 +1,213 @@
-@define-color main-color #00FF00;
-
 * {
-  font: bold 18px "JetBrainsMono Nerd Font Propo";
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 16px;
+    font-weight: bold;
+    min-height: 0;
 }
+
 window#waybar {
-  background: alpha(@background, 0.3);
-  border-radius: 10px;
+    background: rgba(0, 0, 0, 0.85);
+    border-bottom: 3px solid rgba(0, 255, 0, 0.3);
+    color: #00ff00;
+    transition-property: background-color;
+    transition-duration: .5s;
+    padding: 4px;
 }
-#window {
-  padding: 2px 10px;
-  margin: 4px 2px 4px 4px;
-  background: alpha(@background, 0.3);
-  border-radius: 10px;
-  color: lighter(@main-color);
+
+window#waybar.hidden {
+    opacity: 0.2;
 }
-tooltip {
-  background: alpha(@background, 0.3);
-  border: 2px solid alpha(lighter(@main-color), 0.3);
-  border-radius: 10px;
-}
-tooltip label {
-  color: @foreground;
-}
-#custom-arrow-right {
-  color: @main-color;
-  margin: 0px 4px;
-}
-#cpu {
-  color: #00FF00; /* Verde fosforescente */
-  font-weight: bold;
-  font-family: "JetBrainsMono Nerd Font";
-  padding: 0 10px;
-  background-color: rgba(0, 255, 0, 0.1);
-  border: 1px solid #00FF00;
-  border-radius: 4px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-#memory {
-  color: #00FF00;
-  font-weight: bold;
-  font-family: "JetBrainsMono Nerd Font", monospace;
-  padding: 0 10px;
-  background-color: rgba(0, 255, 0, 0.1);
-  border: 1px solid #00FF00;
-  border-radius: 4px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-#memory.warning {
-  color: #FFFF00; /* Amarillo fosforescente para warning */
-  border-color: #FFFF00;
-  background-color: rgba(255, 255, 0, 0.1);
-}
-#memory.critical {
-  color: #FF0000; /* Rojo fosforescente para crítico */
-  border-color: #FF0000;
-  background-color: rgba(255, 0, 0, 0.1);
-}
-#disk {
-  color: #00FF00;
-  font-weight: bold;
-  font-family: "JetBrainsMono Nerd Font", monospace;
-  padding: 0 10px;
-  background-color: rgba(0, 255, 0, 0.1);
-  border: 1px solid #00FF00;
-  border-radius: 4px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-#network {
-  color: #00FF00;
-  font-weight: bold;
-  font-family: "JetBrainsMono Nerd Font", monospace;
-  padding: 0 10px;
-  background-color: rgba(0, 255, 0, 0.1);
-  border: 1px solid #00FF00;
-  border-radius: 4px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-}
-#bluetooth {
-  color: @main-color;
-}
+
 #workspaces {
-  margin: 4px 4px;
-  background: alpha(@background, 0.5);
-  border-radius: 10px;
+    background: transparent;
+    margin: 3px 2px;
+    padding: 0 6px;
+    border-radius: 12px;
+    border: 2px solid rgba(0, 255, 0, 0.3);
 }
+
 #workspaces button {
-  padding: 0px 4px;
-  margin: 4px 4px;
-  color: alpha(@foreground, 0.5);
+    padding: 0 10px;
+    margin: 4px 3px;
+    color: #00ff00;
+    background: transparent;
+    border: 2px solid rgba(0, 255, 0, 0.1);
+    border-radius: 8px;
+    min-width: 30px;
+    transition: all 0.3s ease;
 }
+
 #workspaces button.active {
-  transition: color 0.5s;
-  color: lighter(@main-color);
+    color: #000000;
+    background: #00ff00;
+    border-color: #00ff00;
+    min-width: 40px;
+    box-shadow: 0 0 8px rgba(0, 255, 0, 0.5);
+    font-weight: bold;
 }
-#workspaces button.urgent,
+
+#workspaces button.urgent {
+    background: rgba(255, 0, 0, 0.4);
+    color: #ffffff;
+    border-color: #ff0000;
+}
+
 #workspaces button:hover {
-  color: @color5;
-  background-color: transparent;
+    background: rgba(0, 255, 0, 0.2);
+    border-color: #00ff00;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.3);
 }
-#control-center {
-  padding: 0px 8px;
-  margin: 8px 4px;
-  color: lighter(@main-color);
-  background: alpha(@background, 0.3);
-  border-radius: 10px;
+
+#window {
+    margin: 3px 2px;
+    padding: 0 12px;
+    color: #00ff00;
+    background: transparent;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
 }
-#custom-locked {
-  color: #00FF00;
-  font-weight: bold;
-  font-family: "JetBrainsMono Nerd Font", monospace;
-  padding: 0 10px;
-  background-color: rgba(0, 255, 0, 0.1);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+
+#cpu,
+#memory,
+#disk,
+#custom-cpuinfo,
+#network {
+    background: transparent;
+    padding: 0 12px;
+    margin: 3px 2px;
+    color: #00ff00;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
 }
-#clock {
-  padding: 0px 8px;
-  margin: 4px 2px 4px 2px;
-  background: alpha(@background, 0.3);
-  border-radius: 10px;
-  color: lighter(@main-color);
+
+#cpu {
+    border-right: none;
+    border-radius: 12px 0 0 12px;
 }
-#custom-powermenu {
-  color: #00FF00;
-  font-weight: bold;
-  font-family: "JetBrainsMono Nerd Font", monospace;
-  padding: 0 10px;
-  margin: 7px 0 12px;
-  background-color: rgba(0, 255, 0, 0.1);
-  font-size: 1.2em;         /* Igual altura que otros módulos */              /* Forzar altura */        /* Centrar vertical */   /* Centrar horizontal */
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+
+#memory {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
 }
-#custom-spotify {
-  color: @main-color;
-  margin:     0px 6px 0px 10px;
-  min-width:  25px;
+
+#disk {
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
 }
+
 #custom-cpuinfo {
-  color: #00FF00;
-  font-weight: bold;
-  font-family: "JetBrainsMono Nerd Font", monospace;
-  padding: 0 10px;
-  background-color: rgba(0, 255, 0, 0.1);
-  border: 1px solid #00FF00;
-  border-radius: 4px;
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
+    border-left: none;
+    border-right: none;
+    border-radius: 0;
 }
-#pulseaudio-slider slider {
-    min-height: 10px;
-    min-width: 100px;
-    opacity: 1;
-    background-image: none;
-    background-color: transparent;
-    border: none;
-    box-shadow: none;
+
+#network {
+    border-left: none;
+    border-radius: 0 12px 12px 0;
 }
-#pulseaudio-slider trough {
-    min-height: 10px;
-    min-width: 100px;
-    border-radius: 5px;
-    background-color: black;
+
+#clock {
+    background: transparent;
+    padding: 0 12px;
+    margin: 3px 2px;
+    color: #00ff00;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
+    font-size: 17px;
 }
-#pulseaudio-slider highlight {
-    min-width: 10px;
-    border-radius: 5px;
-    background-color: green;
-}
+
 #pulseaudio {
-  color: @main-color;
+    background: transparent;
+    padding: 0 12px;
+    margin: 3px 2px;
+    color: #00ff00;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
 }
-#custom-playerctl {
-  color: @main-color;
+
+#bluetooth {
+    background: transparent;
+    padding: 0 12px;
+    margin: 3px 2px;
+    color: #00ff00;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
 }
-#custom-playerlabel {
-  color: @main-color;
+
+#custom-spotify {
+    background: transparent;
+    padding: 0 12px;
+    margin: 3px 2px;
+    color: #00ff00;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
 }
-#custom-random-wallpaper {
-  color: #00FF00;
-  font-weight: bold;
-  font-family: "JetBrainsMono Nerd Font", monospace;
-  padding: 0 10px;
-  background-color: rgba(0, 255, 0, 0.1);
-  -webkit-font-smoothing: antialiased;
-  -moz-osx-font-smoothing: grayscale;
-  transition: background-color 0.3s ease, color 0.3s ease;
+
+#custom-powermenu,
+#custom-random-wallpaper,
+#custom-locked {
+    background: transparent;
+    padding: 0 12px;
+    margin: 3px 2px;
+    color: #00ff00;
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
+    transition: all 0.3s ease;
+    font-size: 18px;
+}
+
+#custom-powermenu:hover,
+#custom-random-wallpaper:hover,
+#custom-locked:hover {
+    background: rgba(0, 255, 0, 0.2);
+    border-color: #00ff00;
+    box-shadow: 0 0 5px rgba(0, 255, 0, 0.5);
+}
+
+/* Estilos para estados específicos */
+#cpu.warning,
+#memory.warning,
+#disk.warning {
+    background: rgba(255, 255, 0, 0.2);
+    color: #ffff00;
+    border-color: rgba(255, 255, 0, 0.5);
+}
+
+#cpu.critical,
+#memory.critical,
+#disk.critical {
+    background: rgba(255, 0, 0, 0.2);
+    color: #ff0000;
+    border-color: rgba(255, 0, 0, 0.5);
+}
+
+/* Animaciones */
+@keyframes blink {
+    to {
+        background-color: rgba(0, 255, 0, 0.2);
+        color: #000000;
+    }
+}
+
+.warning {
+    animation-name: blink;
+    animation-duration: 1s;
+    animation-timing-function: linear;
+    animation-iteration-count: infinite;
+    animation-direction: alternate;
+}
+
+/* Tooltips */
+tooltip {
+    background: rgba(0, 0, 0, 0.9);
+    border: 2px solid rgba(0, 255, 0, 0.3);
+    border-radius: 12px;
+}
+
+tooltip label {
+    color: #00ff00;
+    font-family: "JetBrainsMono Nerd Font";
+    font-size: 15px;
 }
